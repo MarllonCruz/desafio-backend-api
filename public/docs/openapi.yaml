@@ -1,0 +1,176 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://localhost/api'
+paths:
+  /api/transactions:
+    post:
+      summary: 'Make a transaction in the wallet'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: title
+          description: 'Title for transaction'
+          example: veritatis
+          required: true
+          schema:
+            type: string
+            description: 'Title for transaction'
+            example: veritatis
+        -
+          in: query
+          name: value
+          description: 'Value for transaction'
+          example: 7
+          required: true
+          schema:
+            type: integer
+            description: 'Value for transaction'
+            example: 7
+        -
+          in: query
+          name: type
+          description: 'Type field must be "income" or "outcome"'
+          example: eveniet
+          required: true
+          schema:
+            type: string
+            description: 'Type field must be "income" or "outcome"'
+            example: eveniet
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: uuid
+                  title: 'Pagamento da fatura'
+                  value: 500
+                  type: income
+                properties:
+                  id:
+                    type: string
+                    example: uuid
+                  title:
+                    type: string
+                    example: 'Pagamento da fatura'
+                  value:
+                    type: integer
+                    example: 500
+                  type:
+                    type: string
+                    example: income
+      tags:
+        - 'Wallet Management'
+      security: []
+    get:
+      summary: 'Get all transactions and total amount in balance'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  transactions:
+                    -
+                      id: uuid
+                      title: Salário
+                      value: 4000
+                      type: income
+                    -
+                      id: uuid
+                      title: Freela
+                      value: 2000
+                      type: income
+                    -
+                      id: uuid
+                      title: 'Pagamento da fatura'
+                      value: 4000
+                      type: outcome
+                    -
+                      id: uuid
+                      title: 'Cadeira Gamer'
+                      value: 1200
+                      type: outcome
+                  balance:
+                    income: 6000
+                    outcome: 5200
+                    total: 800
+                properties:
+                  transactions:
+                    type: array
+                    example:
+                      -
+                        id: uuid
+                        title: Salário
+                        value: 4000
+                        type: income
+                      -
+                        id: uuid
+                        title: Freela
+                        value: 2000
+                        type: income
+                      -
+                        id: uuid
+                        title: 'Pagamento da fatura'
+                        value: 4000
+                        type: outcome
+                      -
+                        id: uuid
+                        title: 'Cadeira Gamer'
+                        value: 1200
+                        type: outcome
+                    items:
+                      type: object
+                  balance:
+                    type: object
+                    example:
+                      income: 6000
+                      outcome: 5200
+                      total: 800
+      tags:
+        - 'Wallet Management'
+      security: []
+tags:
+  -
+    name: 'Wallet Management'
+    description: "\nAPIs to manage the user resource"

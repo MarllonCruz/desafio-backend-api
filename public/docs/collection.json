@@ -1,0 +1,117 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/localhost\/api"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "1ecda892-621a-46fd-937e-346864654f81",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Wallet Management",
+            "description": "\nAPIs to manage the user resource",
+            "item": [
+                {
+                    "name": "Make a transaction in the wallet",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/transactions",
+                            "query": [
+                                {
+                                    "key": "title",
+                                    "value": "veritatis",
+                                    "description": "Title for transaction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "value",
+                                    "value": "7",
+                                    "description": "Value for transaction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "eveniet",
+                                    "description": "Type field must be \"income\" or \"outcome\"",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/transactions?title=veritatis&value=7&type=eveniet"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"id\": \"uuid\",\n \"title\": \"Pagamento da fatura\",\n \"value\": 500,\n \"type\": \"income\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get all transactions and total amount in balance",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/transactions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/transactions"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"transactions\": [\n     {\n      \"id\": \"uuid\",\n      \"title\": \"Sal\u00e1rio\",\n     \"value\": 4000,\n      \"type\": \"income\"\n      },\n      {\n      \"id\": \"uuid\",\n      \"title\": \"Freela\",\n      \"value\": 2000,\n      \"type\": \"income\"\n      },\n      {\n      \"id\": \"uuid\",\n      \"title\": \"Pagamento da fatura\",\n      \"value\": 4000,\n      \"type\": \"outcome\"\n      },\n      {\n      \"id\": \"uuid\",\n      \"title\": \"Cadeira Gamer\",\n      \"value\": 1200,\n      \"type\": \"outcome\"\n      }\n  ],\n  \"balance\": {\n      \"income\": 6000,\n      \"outcome\": 5200,\n      \"total\": 800\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
